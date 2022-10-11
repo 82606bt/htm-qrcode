@@ -29,9 +29,9 @@
     }
 
     let html5QrcodeScanner = new Html5QrcodeScanner(
-    "reader",
+    "qr-reader",
     { fps: 10, qrbox: {width: 250, height: 250} },
-    /* verbose= */ false);
+    verbose=  false);
     html5QrcodeScanner.render(onScanSuccess, onScanFailure);
 </script>
 
@@ -54,16 +54,5 @@
     #qr-reader{
         display: none;
     }
-    .css-qr{
-        display: inline-block;
-        position: relative;
-        padding: 0px;
-        border: 1px solid silver;
-        position: absolute;
-        border-width: 115px 195px;
-        border-style: solid;
-        border-color: rgba(0, 0, 0, 0.48);
-        box-sizing: border-box;
-        inset: 0px
-    }
+    
 </style>
