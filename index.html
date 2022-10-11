@@ -1,0 +1,62 @@
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+
+<script src="https://unpkg.com/html5-qrcode" type="text/javascript">
+
+</script>
+
+<div class="row">
+    <div class="input-group col-md-4">
+        <input class="form-control py-2 border-right-0 border" type="search" value="search" id="example-search-input">
+        <span class="input-group-append">
+            <button class="btn btn-outline-secondary border-left-0 border btn-show-scanner" type="button" onclick="Functionclick()">
+                <i class="fa fa-qrcode"></i>
+            </button>
+          </span>
+    </div>
+</div>
+<div id="qr-reader" style="width: 400px;height: 300px; margin: 10% auto;"></div>
+<script>
+    function onScanSuccess(decodedText, decodedResult) {
+    // Handle on success condition with the decoded text or result.
+    window.confirm(`Scan result: ${decodedText}`, decodedResult);
+    }
+
+    function onScanError(errorMessage) {
+       window.confirm('QR error!')
+    }
+
+    var html5QrcodeScanner = new Html5QrcodeScanner("qr-reader", {
+        fps: 20,
+        qrbox: 360,
+    });
+    html5QrcodeScanner.render(onScanSuccess);
+</script>
+
+<script>
+    function Functionclick(){
+        var x = document.getElementById("qr-reader");
+        if (x.style.display === "none" || x.style.display === "") {
+            x.style.display = "block";
+        } else {
+            x.style.display = "none";
+        }
+    }
+</script>
+<style>
+    .form-control:focus {
+    outline: 0 !important;
+    border-color: initial;
+    box-shadow: none;
+    }
+    #qr-reader{
+        display: none;
+    }
+    .css-qr{
+        display: inline-block;
+        position: relative;
+        padding: 0px;
+        border: 1px solid silver;
+    }
+</style>
