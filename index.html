@@ -18,17 +18,16 @@
 <div id="qr-reader" style="width: 400px;height: 300px; margin: 10% auto;"></div>
 <script>
     function onScanSuccess(decodedText, decodedResult) {
-    // handle the scanned code as you like, for example:
+    
     window.confirm(`Code: ${decodedText}`, decodedResult);
     }
 
-    let config = { facingMode: "environment", 
-    facingMode: { exact: "environment"},
+    let config = { 
+    facingMode: environment, 
+    facingMode: { exact: environment},
     fps: 10,
     qrbox: {width: 250, height: 250},
     rememberLastUsedCamera: false,
-
-    // Only support camera scan type.
     supportedScanTypes: [Html5QrcodeScanType.SCAN_TYPE_CAMERA]
     };
 
