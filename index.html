@@ -17,22 +17,23 @@
 </div>
 <div id="qr-reader" style="width: 400px;height: 300px; margin: 10% auto;"></div>
 <script>
-    const html5QrCode = new Html5Qrcode("qr-reader");
-    const qrCodeSuccessCallback = (decodedText, decodedResult) => {
-        window.confirm(`QR Code:${decodedText}`, decodedResult)
+    function onScanSuccess(decodedText, decodedResult) {
+    // handle the scanned code as you like, for example:
+    console.log(`Code: ${decodedText}`, decodedResult);
+    }
+
+    let config = { facingMode: "environment", 
+    fps: 10,
+    qrbox: {width: 100, height: 100},
+    rememberLastUsedCamera: true,
+
+    // Only support camera scan type.
+    supportedScanTypes: [Html5QrcodeScanType.SCAN_TYPE_CAMERA]
     };
-    const config = { fps: 10, qrbox: { width: 250, height: 250 } };
 
-
-
-    // If you want to prefer back camera
-    html5QrCode.start({ facingMode: "environment" }, config, qrCodeSuccessCallback);
-
-    
-
-    // Select back camera or fail with `OverconstrainedError`.
-    html5QrCode.start({ facingMode: { exact: "environment"} }, config, qrCodeSuccessCallback);
-    html5QrcodeScanner.render(qrCodeSuccessCallback);    
+    let html5QrcodeScanner = new Html5QrcodeScanner(
+    "qr-reader", config, /* verbose= */ false);
+    html5QrcodeScanner.render(onScanSuccess);
 </script>
 
 <script>
