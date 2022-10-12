@@ -19,13 +19,13 @@
 <script>
     function onScanSuccess(decodedText, decodedResult) {
     // handle the scanned code as you like, for example:
-    console.log(`Code: ${decodedText}`, decodedResult);
+    window.confirm(`Code: ${decodedText}`, decodedResult);
     }
 
     let config = { facingMode: "environment", 
     fps: 10,
     qrbox: {width: 250, height: 250},
-    rememberLastUsedCamera: true,
+    rememberLastUsedCamera: false,
 
     // Only support camera scan type.
     supportedScanTypes: [Html5QrcodeScanType.SCAN_TYPE_CAMERA]
