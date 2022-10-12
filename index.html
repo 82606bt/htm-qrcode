@@ -17,37 +17,25 @@
 </div>
 <div id="qr-reader" style="width: 400px;height: 300px; margin: 10% auto;"></div>
 <script>
-    // function onScanSuccess(decodedText, decodedResult) {
+    function onScanSuccess(decodedText, decodedResult) {
     
-    // window.confirm(`Code: ${decodedText}`, decodedResult);
-    // }
+    window.confirm(`Code: ${decodedText}`, decodedResult);
+    }
 
-    // let config = { 
+    let config = { 
    
-    // facingMode: { exact: "environment"},
-    // fps: 10,
-    // qrbox: {width: 250, height: 250},
-    // rememberLastUsedCamera: false,
-    // supportedScanTypes: [Html5QrcodeScanType.SCAN_TYPE_CAMERA]
-    // };
+   
+    fps: 10,
+    qrbox: {width: 250, height: 250},
+    rememberLastUsedCamera: false,
+    supportedScanTypes: [Html5QrcodeScanType.SCAN_TYPE_CAMERA]
+    };
   
 
-    // let html5QrcodeScanner = new Html5QrcodeScanner(
-    // "qr-reader", config, /* verbose= */ false);
+    let html5QrcodeScanner = new Html5QrcodeScanner(
+    "qr-reader",  {facingMode: { exact: "environment"} },config, /* verbose= */ false);
 
-    // html5QrcodeScanner.render(onScanSuccess);
-    const html5QrCode = new Html5Qrcode("qr-reader");
-    const qrCodeSuccessCallback = (decodedText, decodedResult) => {
-        window.confirm(`Code: ${decodedText}`, decodedResult)
-    };
-    const config = { fps: 10, qrbox: { width: 250, height: 250 } };
-
-   
-    // If you want to prefer back camera
-    html5QrCode.start({ facingMode: "environment" }, config, qrCodeSuccessCallback);
-
-    // Select back camera or fail with `OverconstrainedError`.
-    html5QrCode.start({ facingMode: { exact: "environment"} }, config, qrCodeSuccessCallback);
+    html5QrcodeScanner.render(onScanSuccess);
 </script>
 
 <script>
