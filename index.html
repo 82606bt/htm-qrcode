@@ -20,8 +20,8 @@
     let html5QrcodeScanner = new Html5QrcodeScanner(
     "qr-reader",
     { fps: 10, qrbox: {width: 250, height: 250} },
-    {facingMode:"environment"},
-    /* verbose= */ false);
+    {facingMode: { exact: "environment"} },
+    verbose= false);
     function onScanSuccess(decodedText, decodedResult) {
     // handle the scanned code as you like, for example:
     window.confirm(`Code matched = ${decodedText}`, decodedResult);
