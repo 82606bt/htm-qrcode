@@ -15,7 +15,7 @@
           </span>
     </div>
 </div>
-<div id="reader" width="600px" height="600px"></div>
+<div id="reader" width="600px"  ></div>
 <script>
     // function onScanSuccess(decodedText, decodedResult) {
     
@@ -56,18 +56,27 @@
     // }).catch(err => {
     //     console.log(err)
     // });
-    const html5QrCode = new Html5Qrcode("reader");
-    const qrCodeSuccessCallback = (decodedText, decodedResult) => {
-        alert(decodedText)
+    function onScanSuccess(decodedText, decodedResult) {
+    // handle the scanned code as you like, for example:
+    alert(`Code matched = ${decodedText}`, decodedResult);
+    }
+
+    // Square QR box with edge size = 70% of the smaller edge of the viewfinder.
+    let qrboxFunction = function(viewfinderWidth, viewfinderHeight) {
+    let minEdgePercentage = 0.7; // 70%
+    let minEdgeSize = Math.min(viewfinderWidth, viewfinderHeight);
+    let qrboxSize = Math.floor(minEdgeSize * minEdgePercentage);
+    return {
+        width: qrboxSize,
+        height: qrboxSize
     };
-    const config = { fps: 10, qrbox: { width: 350, height: 350 } };
+    }
 
-    // If you want to prefer front camera
-    html5QrCode.start({ facingMode: "environment" }, config, qrCodeSuccessCallback);
-
-   
-    // Select front camera or fail with `OverconstrainedError`.
-    html5QrCode.start({ facingMode: { exact: "environment"} }, config, qrCodeSuccessCallback);
+    let html5QrcodeScanner = new Html5QrcodeScanner(
+    "reader",
+    { fps: 10, qrbox: qrboxFunction },
+    /* verbose= */ false);
+    html5QrcodeScanner.render(onScanSuccess);
 
    
    
