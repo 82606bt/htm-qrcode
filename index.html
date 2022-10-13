@@ -15,48 +15,50 @@
           </span>
     </div>
 </div>
-<div id="qr-reader" style="width: 400px;height: 300px; margin: 10% auto;"></div>
+<div id="qr-reader" style="width: 800px;height: 800px; margin: 10% auto;"></div>
 <script>
-    // function onScanSuccess(decodedText, decodedResult) {
+    function onScanSuccess(decodedText, decodedResult) {
     
-    // window.confirm(`Code: ${decodedText}`, decodedResult);
-    // }
+    window.confirm(`Code: ${decodedText}`, decodedResult);
+    }
 
-    // let config = { 
+    let config = { 
    
    
-    // fps: 10,
-    // qrbox: {width: 250, height: 250},
-    // rememberLastUsedCamera: false,
-    // supportedScanTypes: [Html5QrcodeScanType.SCAN_TYPE_CAMERA]
-    // };
+    fps: 10,
+    qrbox: {width: 250, height: 250},
+    rememberLastUsedCamera: false,
+    supportedScanTypes: [Html5QrcodeScanType.SCAN_TYPE_CAMERA]
+    };
   
 
-    // let html5QrcodeScanner = new Html5QrcodeScanner(
-    // "qr-reader", config, /* verbose= */ false);
+    let html5QrcodeScanner = new Html5QrcodeScanner(
+    "qr-reader", config, /* verbose= */ false);
 
-    // html5QrcodeScanner.render(onScanSuccess);
-    Html5Qrcode.getCameras().then(devices => {
-        if (devices && devices.length) {
-            var cameraId = devices[0].id;
-            const html5QrCode = new Html5Qrcode("qr-reader");
-            const qrCodeSuccessCallback = (decodedText, decodedResult) => {
-                alert(decodedText);
-            };
-            const config = {
-                fps: 25,
-                qrbox: {
-                width: 350,
-                height: 350
-                }
-            };
-            html5QrCode.start({
-                facingMode: "environment"
-            }, config, qrCodeSuccessCallback);
-            }
-        }).catch(err => {
-            console.log(err)
-        });
+    html5QrcodeScanner.render(onScanSuccess);
+    // Html5Qrcode.getCameras().then(devices => {
+    //     if (devices && devices.length) {
+    //         var cameraId = devices[0].id;
+      
+    //         const html5QrCode = new Html5Qrcode("qr-reader");
+    //         const qrCodeSuccessCallback = (decodedText, decodedResult) => {
+    //             alert(decodedText);
+    //         };
+    //         const config = {
+    //             fps: 25,
+    //             qrbox: {
+    //             width: 350,
+    //             height: 350
+    //             }
+    //         };
+    //         html5QrCode.start({
+    //             facingMode: "environment"
+    //         }, config, qrCodeSuccessCallback);
+    //         }
+    //     }).catch(err => {
+    //         console.log(err)
+    //     });
+   
 </script>
 
 <script>
