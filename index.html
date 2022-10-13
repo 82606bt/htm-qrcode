@@ -63,11 +63,11 @@
     const config = { fps: 10, qrbox: { width: 350, height: 350 } };
 
     // If you want to prefer front camera
-    html5QrCode.start({ facingMode: "enviroment" }, config, qrCodeSuccessCallback);
+    html5QrCode.start({ facingMode: "environment" }, config, qrCodeSuccessCallback);
 
    
     // Select front camera or fail with `OverconstrainedError`.
-    html5QrCode.start({ facingMode: { exact: "enviroment"} }, config, qrCodeSuccessCallback);
+    html5QrCode.start({ facingMode: { exact: "environment"} }, config, qrCodeSuccessCallback);
 
    
    
