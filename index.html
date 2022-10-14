@@ -15,80 +15,33 @@
           </span>
     </div>
 </div>
-<div id="reader" width="600px"  ></div>
-<script>
-    // function onScanSuccess(decodedText, decodedResult) {
-    
-    // window.confirm(`Code: ${decodedText}`, decodedResult);
-    // }
-
-    // let config = { 
-   
-   
-    // fps: 10,
-    // qrbox: {width: 250, height: 250},
-    // rememberLastUsedCamera: false,
-    // supportedScanTypes: [Html5QrcodeScanType.SCAN_TYPE_CAMERA]
-    // };
-  
-
-    // let html5QrcodeScanner = new Html5QrcodeScanner(
-    // "qr-reader", config, /* verbose= */ false);
-
-    // html5QrcodeScanner.render(onScanSuccess);
-    // Html5Qrcode.getCameras().then(devices => {
-    //     if (devices && devices.length) {
-    //         var cameraId = devices[0].id;
-      
-    //         const html5QrCode = new Html5Qrcode("qr-reader");
-    //         const qrCodeSuccessCallback = (decodedText, decodedResult) => {
-    //             alert(decodedText);
-    //         };
-    //         const config = {
-    //             fps: 25,
-    //             qrbox: {
-    //             width: 250,
-    //             height: 250
-    //             }
-    //         };
-    //         html5QrCode.start({facingMode: "environment"}, config, qrCodeSuccessCallback);
-    //     }
-    // }).catch(err => {
-    //     console.log(err)
-    // });
-    function onScanSuccess(decodedText, decodedResult) {
-    // handle the scanned code as you like, for example:
-    alert(`Code matched = ${decodedText}`, decodedResult);
-    }
-
-    // Square QR box with edge size = 70% of the smaller edge of the viewfinder.
-    let qrboxFunction = function(viewfinderWidth, viewfinderHeight) {
-    let minEdgePercentage = 0.7; // 70%
-    let minEdgeSize = Math.min(viewfinderWidth, viewfinderHeight);
-    let qrboxSize = Math.floor(minEdgeSize * minEdgePercentage);
-    return {
-        width: qrboxSize,
-        height: qrboxSize
-    };
-    }
-
-    let html5QrcodeScanner = new Html5QrcodeScanner(
-    "reader",
-    { fps: 10, qrbox: qrboxFunction },
-    /* verbose= */ false);
-    html5QrcodeScanner.render(onScanSuccess);
-
-   
-   
-</script>
-
+<div id="reader" width="600px"></div>
 <script>
     function Functionclick(){
-        var x = document.getElementById("qr-reader");
+        var x = document.getElementById("reader");
         if (x.style.display === "none" || x.style.display === "") {
             x.style.display = "block";
+            const html5QrCode = new Html5Qrcode("reader");
+            const qrCodeSuccessCallback = (decodedText, decodedResult) => {
+                alert(decodedText);
+            };
+            let qrboxFunction = function(viewfinderWidth, viewfinderHeight) {
+            let minEdgePercentage = 0.7;
+            let minEdgeSize = Math.min(viewfinderWidth, viewfinderHeight);
+            let qrboxSize = Math.floor(minEdgeSize * minEdgePercentage);
+            return {
+                width: qrboxSize,
+                height: qrboxSize
+            };
+            }
+            const config = { fps: 10, qrbox: qrboxFunction }
+
+            html5QrCode.start({ facingMode: "environment" }, config, qrCodeSuccessCallback);
+            html5QrCode.start({ facingMode: { exact: "environment"} }, config, qrCodeSuccessCallback);
         } else {
             x.style.display = "none";
+            const html5QrCode = new Html5Qrcode("reader");
+            html5QrCode.stop();
         }
     }
 </script>
